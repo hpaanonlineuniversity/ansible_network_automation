@@ -1,0 +1,15 @@
+# check_interfaces_simple.yml
+---
+- name: Check Interface Status
+  hosts: all
+  gather_facts: no
+  
+  tasks:
+    - name: Show IP interface brief
+      cisco.ios.ios_command:
+        commands: show ip interface brief
+      register: ip_brief
+    
+    - name: Print interface status
+      debug:
+        var: ip_brief.stdout

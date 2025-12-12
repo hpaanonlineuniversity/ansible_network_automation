@@ -1,0 +1,20 @@
+---
+- name: Quick Cisco Config
+  hosts: all
+  gather_facts: false
+
+  tasks:
+    - name: Set banner
+      cisco.ios.ios_config:
+        lines: banner motd $ Authorized Personnel Only $
+    
+    - name: Disable domain lookup
+      cisco.ios.ios_config:
+        lines: no ip domain-lookup
+    
+    - name: Set console password
+      cisco.ios.ios_config:
+        lines:
+          - password cisco
+          - login
+        parents: line console 0

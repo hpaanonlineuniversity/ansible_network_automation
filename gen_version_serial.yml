@@ -1,0 +1,17 @@
+---
+- name: Play to generate version and serial num
+  hosts: all
+  gather_facts: false
+  connection: network_cli
+
+  tasks:
+    - name: retrieve facts
+      ios_facts:
+
+    - name: display version
+      debug:
+        msg: "{{ ansible_net_version }}"
+
+    - name: display serial number
+      debug:
+        msg: "{{ ansible_net_serialnum }}"  

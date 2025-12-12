@@ -1,0 +1,23 @@
+# backup_config_simple.yml
+---
+- name: Backup Cisco Router Configurations
+  hosts: all
+  gather_facts: no
+  
+  tasks:
+    - name: Get running configuration
+      cisco.ios.ios_command:
+        commands:
+          - show running-config
+      register: config
+    
+    - name: Create backups directory
+      file:
+        path: ./backups
+        state: directory
+        mode: '0755'
+    
+    - name: Save configuration to file
+      copy:
+        content: "{{ config.stdout[0] }}"
+        dest: "./backups/{{ inventory_hostname }}.cfg"
