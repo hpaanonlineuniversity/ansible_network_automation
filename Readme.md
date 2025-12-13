@@ -1,3 +1,5 @@
+My Notes.
+
 
 sudo apt install python3-paramiko sshpass ansible
 
@@ -130,7 +132,7 @@ Host 192.168.101.*
     PubkeyAcceptedKeyTypes +ssh-rsa
 
     StrictHostKeyChecking no
-    
+
     UserKnownHostsFile /dev/null
 
 
