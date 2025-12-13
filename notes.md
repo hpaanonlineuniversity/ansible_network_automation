@@ -4,12 +4,16 @@ sudo apt install python3-paramiko sshpass ansible
 =========================================================================
 
 ansible all -m raw -a "show version"
+
 ansible all -m raw -a "show ip interface brief"
+
 ansible all -m raw -a "show ip interface brief" -c ssh
 
 
 ansible all -m ios_command -a "commands='show ip int brief'" -c network_cli
+
 ansible all -m ios_ping -a "dest=192.168.122.1"
+
 ansible all -m ios_ping -a "dest=192.168.122.1" -c network_cli
 
 =====================================================================================================
@@ -30,14 +34,23 @@ ansible all -m cisco.ios.ios_command -a "commands='show logging'"
 
 
 configure terminal
+
 hostname R2
+
 ip domain-name example.com
+
 crypto key generate rsa modulus 2048
+
 username devops privilege 15 secret devops
+
 line vty 0 4
+
  transport input ssh
+
  login local
+
 end
+
 write memory
 
 ==========================================================================================================
@@ -87,9 +100,13 @@ ansible all -m cisco.ios.ios_facts -a "gather_subset=all"
 
 
 ssh -o KexAlgorithms=+diffie-hellman-group-exchange-sha1 \
+
     -o Ciphers=+aes128-cbc \
+
     -o HostKeyAlgorithms=+ssh-rsa \
+
     -o PubkeyAcceptedKeyTypes=+ssh-rsa \
+
     devops@192.168.101.101
 
 
@@ -103,11 +120,17 @@ SSH config ကို ပြင်ပါ
 # ~/.ssh/config မှာ
 
 Host 192.168.101.*
+
     KexAlgorithms +diffie-hellman-group-exchange-sha1
+
     Ciphers +aes128-cbc
+    
     HostKeyAlgorithms +ssh-rsa
+
     PubkeyAcceptedKeyTypes +ssh-rsa
+
     StrictHostKeyChecking no
+    
     UserKnownHostsFile /dev/null
 
 
