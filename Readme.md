@@ -102,13 +102,9 @@ ansible all -m cisco.ios.ios_facts -a "gather_subset=all"
 
 
 ssh -o KexAlgorithms=+diffie-hellman-group-exchange-sha1 \
-
     -o Ciphers=+aes128-cbc \
-
     -o HostKeyAlgorithms=+ssh-rsa \
-
     -o PubkeyAcceptedKeyTypes=+ssh-rsa \
-
     devops@192.168.101.101
 
 
