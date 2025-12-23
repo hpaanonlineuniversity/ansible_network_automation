@@ -7,8 +7,8 @@ interface G 0/0
 no shutdown
 
 interface G 0/0.101
-description MGMT with Ansible
-encapsulation dot1q 100
+description MGMTwithAnsible
+encapsulation dot1q 101
 ip address 192.168.101.1
 
 interface G 0/0.10
@@ -64,7 +64,7 @@ configure terminal
 hostname SW1
 
 vlan 101
-name MGMT with Ansible
+name MGMTwithAnsible
 
 vlan 10
 name RED
@@ -97,9 +97,8 @@ description TRUNK-TO-R1
 switchport trunk encapsulation dot1q
 switchport mode trunk
 
-interface Vlan101
+interface Vlan 101
 ip address 192.168.101.2 255.255.255.0
-ip default-gateway 192.168.101.1
 
 ip domain-name example.com
 crypto key generate rsa modulus 2048
